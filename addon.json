@@ -1,0 +1,15 @@
+{
+  "title": "TTT Randomat 2.0 Jingle Jam 2021 Events Pack",
+  "type": "ServerContent",
+  "ignore": [
+    ".git*",
+    ".vscode*",
+    "*.md",
+    "*.iml",
+    ".idea*",
+    "*.psd",
+    "*.vcproj",
+    "*.svn*",
+    "LICENSE"
+  ]
+}
