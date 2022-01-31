@@ -37,7 +37,7 @@ local ShootSound = Sound("weapons/grenade_launcher1.wav")
 function SWEP:Initialize()
     self:SetWeaponHoldType(self.HoldType)
     if CLIENT then
-        self:AddHUDHelp("Use {primaryfire} to give gifts to nice children", "Use {secondaryfire} to shoot coal at naughty children", false)
+        self:AddHUDHelp("rdmtsanta_xmascannon_help_pri", "rdmtsanta_xmascannon_help_sec", true)
     end
 end
 
