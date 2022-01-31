@@ -18,6 +18,15 @@ _randomat_boxingday_timer_ - Default: 3 - Time between being given gloves.\
 _randomat_boxingday_strip_ - Default: 1 - The event strips your other weapons.\
 _randomat_boxingday_knockout_duration_ - Default: 10 - Time punched player should be knocked down.
 
+## Hello, Santa! It's me! Santa!
+_Suggested By_: Noxx\
+All players are turned into santa and given a christmas cannon
+\
+\
+**ConVars**
+\
+_randomat_hellosanta_blocklist - Default: - The comma-separated list of weapon IDs to not give out. For example: "ttt_m9k_harpoon,weapon_ttt_slam"._
+
 ## Jingle Bells
 _Suggested By_: Noxx\
 All players play the Loot Goblin jingle noise when they move
@@ -45,3 +54,4 @@ _ttt_randomat_jinglejam2021_weight_ - Default: -1 - The weight this event should
 - [Fyxen](https://steamcommunity.com/profiles/76561198810121546/) for the model, texture, animation, and sound modification for the boxing gloves weapon
 - [n Beats](https://www.youtube.com/channel/UCqeNgQLxwkV8TqEyxG_q60Q) for the original yelling sound used with "Boxing Day"'s boxing gloves flurry of punches ability
 - [Sheev Palpatimo](https://steamcommunity.com/id/Palpatimo) for basis of the weapon jamming code from their [TTT Addon: Weapons Jammer](https://steamcommunity.com/sharedfiles/filedetails/?id=849612809) used in "Jingle Jam 2021"
+- Kathar for the model and texture for the christmas present
