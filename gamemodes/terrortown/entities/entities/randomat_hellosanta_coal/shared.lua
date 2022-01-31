@@ -33,7 +33,7 @@ if SERVER then
 
         ent:TakeDamage(ent:Health(), owner, self)
         self.lifetime = CurTime() + 3 -- Leave the coal around for a few more seconds then remove it
-        if Randomat:IsTraitorTeam(ent) or (Randomat:IsJesterTeam(ent) and GetConVar("randomat_hellosanta_jesters_are_naughty"):GetBool()) or (Randomat:IsIndependentTeam(ent) and GetConVar("randomat_hellosanta_independents_are_naughty"):GetBool()) then
+        if not owner:IsSameTeam(ent) then
             owner:PrintMessage(HUD_PRINTTALK, ent:Nick() .. " was naughty and your ammo has been refunded.")
             owner:SetNWBool("RdmtXmasCannonHasAmmo", true)
         else
