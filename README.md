@@ -10,7 +10,7 @@ Boxing gloves for everyone!
 \
 **ConVars**
 \
-_ttt_randomat_boxingday - Default: 1 - Whether this event is enabled.\
+_ttt_randomat_boxingday_ - Default: 1 - Whether this event is enabled.\
 _ttt_randomat_boxingday_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
 _ttt_randomat_boxingday_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.\
 _randomat_boxingday_damage_ - Default: 5 - Damage done by each punch.\
@@ -25,6 +25,9 @@ All players are turned into santa and given a christmas cannon
 \
 **ConVars**
 \
+_ttt_randomat_hellosanta_ - Default: 1 - Whether this event is enabled.\
+_ttt_randomat_hellosanta_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
+_ttt_randomat_hellosanta_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.
 _randomat_hellosanta_blocklist - Default: - The comma-separated list of weapon IDs to not give out. For example: "ttt_m9k_harpoon,weapon_ttt_slam"._
 
 ## Jingle Bells
@@ -34,7 +37,7 @@ All players play the Loot Goblin jingle noise when they move
 \
 **ConVars**
 \
-_ttt_randomat_jinglebells - Default: 1 - Whether this event is enabled.\
+_ttt_randomat_jinglebells_ - Default: 1 - Whether this event is enabled.\
 _ttt_randomat_jinglebells_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
 _ttt_randomat_jinglebells_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.
 
