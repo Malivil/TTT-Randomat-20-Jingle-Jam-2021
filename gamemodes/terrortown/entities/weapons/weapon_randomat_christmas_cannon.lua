@@ -49,28 +49,23 @@ function SWEP:PrimaryAttack()
     local owner = self:GetOwner()
     if not IsValid(owner) then return end
 
-    local has_ammo = owner:GetNWBool("XmasCannonHasAmmo", false)
+    local has_ammo = owner:GetNWBool("RdmtXmasCannonHasAmmo", false)
 
     if has_ammo then
         self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
         self:EmitSound(ShootSound)
 
         if SERVER then
-            owner:SetNWBool("XmasCannonHasAmmo", false)
+            owner:SetNWBool("RdmtXmasCannonHasAmmo", false)
 
-            local roles = { ROLE_TRAITOR, ROLE_DETECTIVE }
-            local selected = math.random(1, #roles)
-            local role = roles[selected]
-            local tbl = {}
-            for _, v in ipairs(weapons.GetList()) do
-                if v and not v.AutoSpawnable and v.AllowDrop and v.CanBuy and table.HasValue(v.CanBuy, role) then
-                    table.insert(tbl, v)
-                end
+            local blocklist = {}
+            for blocked_id in string.gmatch(GetConVar("randomat_hellosanta_blocklist"):GetString(), "([^,]+)") do
+                table.insert(blocklist, blocked_id:Trim())
             end
-            table.Shuffle(tbl)
 
-            local item = table.Random(tbl)
-            local item_id = item.ClassName
+            local tracking = 0
+            local _, _, swep_table = Randomat:GetShopEquipment(nil, Randomat:GetShopRoles(), blocklist, false, tracking, function(value) tracking = value end, true)
+            local item_id = WEPS.GetClass(swep_table)
 
             local present = ents.Create("randomat_hellosanta_present")
             if not present:IsValid() then return false end
@@ -100,14 +95,14 @@ function SWEP:SecondaryAttack()
     local owner = self:GetOwner()
     if not IsValid(owner) then return end
 
-    local has_ammo = owner:GetNWBool("XmasCannonHasAmmo", false)
+    local has_ammo = owner:GetNWBool("RdmtXmasCannonHasAmmo", false)
 
     if has_ammo then
         self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
         self:EmitSound(ShootSound)
 
         if SERVER then
-            owner:SetNWBool("XmasCannonHasAmmo", false)
+            owner:SetNWBool("RdmtXmasCannonHasAmmo", false)
 
             local coal = ents.Create("randomat_hellosanta_coal")
             if not coal:IsValid() then return false end

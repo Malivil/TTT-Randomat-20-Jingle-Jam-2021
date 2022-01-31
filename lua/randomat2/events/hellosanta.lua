@@ -1,10 +1,11 @@
 local plymeta = FindMetaTable("Player")
 if not plymeta then return end
+local SetMDL = FindMetaTable("Entity").SetModel
+if not SetMDL then return end
 
 local EVENT = {}
 
-CreateConVar("randomat_hellosanta_jesters_are_naughty", 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Whether jesters are considered naughty when hit by coal")
-CreateConVar("randomat_hellosanta_independents_are_naughty", 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Whether independents are considered naughty when hit by coal")
+CreateConVar("randomat_hellosanta_blocklist", "", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "The comma-separated list of weapon IDs to not give out")
 
 EVENT.Title = "Hello, Santa! It's me! Santa!"
 EVENT.Description = "All players are turned into santa and given a christmas cannon"
@@ -31,14 +32,9 @@ function EVENT:Begin()
     for _, v in ipairs(self:GetAlivePlayers()) do
         self:HandleRoleWeapons(v)
         v:Give("weapon_randomat_christmas_cannon")
-        v:SetNWBool("XmasCannonHasAmmo", true)
+        v:SetNWBool("RdmtXmasCannonHasAmmo", true)
         oldPlayerModels[v:SteamID64()] = v:GetModel()
-        if (not v:IsBot()) then
-            v:ConCommand("cl_playermodel_selector_force 0")
-        end
-        timer.Simple(1, function()
-            v:SetModel("models/player/christmas/santa.mdl")
-        end)
+        SetMDL(v, "models/player/christmas/santa.mdl")
         v:RdmtResetSantaGifts()
     end
     SendFullStateUpdate()
@@ -46,8 +42,7 @@ end
 
 function EVENT:End()
     for _, v in ipairs(self:GetAlivePlayers()) do
-        v:SetModel(oldPlayerModels[v:SteamID64()])
-        v:ConCommand("cl_playermodel_selector_force 1")
+        SetMDL(v, oldPlayerModels[v:SteamID64()])
         v:RdmtResetSantaGifts()
     end
 end

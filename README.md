@@ -25,8 +25,7 @@ All players are turned into santa and given a christmas cannon
 \
 **ConVars**
 \
-_randomat_hellosanta_jesters_are_naughty - Default: 1 - Whether jesters are considered naughty when hit by coal.
-_randomat_hellosanta_independents_are_naughty - Default: 0 - Whether independents are considered naughty when hit by coal.
+_randomat_hellosanta_blocklist - Default: - The comma-separated list of weapon IDs to not give out. For example: "ttt_m9k_harpoon,weapon_ttt_slam"._
 
 ## Jingle Bells
 _Suggested By_: Noxx\
