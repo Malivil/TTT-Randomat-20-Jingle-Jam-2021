@@ -41,10 +41,13 @@ function EVENT:Begin()
 end
 
 function EVENT:End()
-    for _, v in ipairs(self:GetAlivePlayers()) do
-        SetMDL(v, oldPlayerModels[v:SteamID64()])
+    for _, v in ipairs(player.GetAll()) do
+        if oldPlayerModels[v:SteamID64()] then
+            SetMDL(v, oldPlayerModels[v:SteamID64()])
+        end
         v:RdmtResetSantaGifts()
     end
+    table.Empty(oldPlayerModels)
 end
 
 Randomat:register(EVENT)
