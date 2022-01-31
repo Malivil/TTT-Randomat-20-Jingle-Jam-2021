@@ -7,6 +7,12 @@ surface.CreateFont("KnockedOut", {
     weight = 600
 })
 
+-- Translation strings
+hook.Add("Initialize", "RdmtBoxingDay_Translations_Initialize", function()
+    LANG.AddToLanguage("english", "rdmtbox_gloves_help_pri", "Use {primaryfire} to knock weapons out of players' hands")
+    LANG.AddToLanguage("english", "rdmtbox_gloves_help_sec", "Attack with {secondaryfire} to knock players out")
+end)
+
 local duration
 local client
 
@@ -15,10 +21,6 @@ net.Receive("RdmtBoxingDayBegin", function()
         client = LocalPlayer()
     end
     duration = net.ReadInt(8)
-
-    -- Translation strings
-    LANG.AddToLanguage("english", "rdmtbox_gloves_help_pri", "Use {primaryfire} to knock weapons out of players' hands")
-    LANG.AddToLanguage("english", "rdmtbox_gloves_help_sec", "Attack with {secondaryfire} to knock players out")
 
     -- Dizzy effect
     local function GetHeadPos(ply, rag)
