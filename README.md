@@ -27,8 +27,8 @@ All players are turned into santa and given a christmas cannon
 \
 _ttt_randomat_hellosanta_ - Default: 1 - Whether this event is enabled.\
 _ttt_randomat_hellosanta_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
-_ttt_randomat_hellosanta_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.
-_randomat_hellosanta_blocklist - Default: - The comma-separated list of weapon IDs to not give out. For example: "ttt_m9k_harpoon,weapon_ttt_slam"._
+_ttt_randomat_hellosanta_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.\
+_randomat_hellosanta_blocklist_ - Default: - The comma-separated list of weapon IDs to not give out. For example: "ttt_m9k_harpoon,weapon_ttt_slam".
 
 ## Jingle Bells
 _Suggested By_: Noxx\
