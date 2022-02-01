@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+    "$basetexture" "models\weapons\christmas_cannon\star"
+    "$surfaceprop" "default"
+    "$translucent" 1
+    "$nocull" 1
+}

@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+    "$basetexture" "models\weapons\christmas_cannon\w_tinsel"
+    "$surfaceprop" "default"
+    "$alphatest" 1
+}

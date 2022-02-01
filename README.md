@@ -54,7 +54,7 @@ _ttt_randomat_jinglejam2021_weight_ - Default: -1 - The weight this event should
 
 ## Special Thanks
 - [Benboncan](https://freesound.org/people/Benboncan/sounds/66951/) on FreeSound.org for "Boxing Day"'s knockout sound
-- [Fyxen](https://steamcommunity.com/profiles/76561198810121546/) for the model, texture, animation, and sound modification for the boxing gloves weapon
+- [Fyxen](https://steamcommunity.com/profiles/76561198810121546/) for the model, texture, animations, and sound modification for the boxing gloves and for the model and texture modifications for the christmas cannon
+- Kathar for the model and texture for the christmas present
 - [n Beats](https://www.youtube.com/channel/UCqeNgQLxwkV8TqEyxG_q60Q) for the original yelling sound used with "Boxing Day"'s boxing gloves flurry of punches ability
 - [Sheev Palpatimo](https://steamcommunity.com/id/Palpatimo) for basis of the weapon jamming code from their [TTT Addon: Weapons Jammer](https://steamcommunity.com/sharedfiles/filedetails/?id=849612809) used in "Jingle Jam 2021"
-- Kathar for the model and texture for the christmas present

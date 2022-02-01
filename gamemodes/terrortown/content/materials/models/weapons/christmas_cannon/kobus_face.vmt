@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+    "$basetexture" "models\weapons\christmas_cannon\kobus_face"
+    "$surfaceprop" "default"
+}
