@@ -34,6 +34,7 @@ local timers = {}
 function EVENT:JamWeapon(ply, weap)
     if not weap.OldPrimaryAttack then
         weap.OldPrimaryAttack = weap.PrimaryAttack
+        weap.JammedMessage = false
         weap.PrimaryAttack = function(w, worldsnd)
             local has_delay = type(w.Primary.Delay) == "number"
             -- Workaround for the weapons that don't use the normal delay system: Just use a fixed delay time and don't check CanPrimaryAttack
@@ -51,6 +52,14 @@ function EVENT:JamWeapon(ply, weap)
                 w:EmitSound("Weapon_Pistol.Empty", w.Primary.SoundLevel or 100)
             elseif SERVER then
                 sound.Play("Weapon_Pistol.Empty", w:GetPos(), w.Primary.SoundLevel or 100)
+            end
+
+            -- Let the player know their weapon is jammed if we haven't told them already
+            local owner = w:GetOwner()
+            if IsPlayer(owner) and not w.JammedMessage then
+                w.JammedMessage = true
+                owner:PrintMessage(HUD_PRINTTALK, "Your weapon has jammed!")
+                owner:PrintMessage(HUD_PRINTCENTER, "Your weapon has jammed!")
             end
         end
 
@@ -82,6 +91,13 @@ function EVENT:UnjamWeapon(ply, weap)
         weap.PrimaryAttack = weap.OldPrimaryAttack
         weap.OldPrimaryAttack = nil
 
+        -- If the player knows their weapon was jammed, let them know they've unjammed it
+        local owner = weap:GetOwner()
+        if IsPlayer(owner) and weap.JammedMessage then
+            owner:PrintMessage(HUD_PRINTTALK, "You have cleared your jammed weapon!")
+            owner:PrintMessage(HUD_PRINTCENTER, "You have cleared your jammed weapon!")
+        end
+
         net.Start("RdmtJingleJam2021Stop")
         net.WriteString(weap_class)
         net.Send(ply)
@@ -99,7 +115,7 @@ function EVENT:Begin()
     local chance = GetConVar("randomat_jinglejam2021_chance"):GetFloat()
 
     timer.Create("RdmtJingleJam2021JamCheck", GetInterval(), 0, function()
-        timer.Pause("RdmtJingleJam2021JamCheck")
+        timer.Stop("RdmtJingleJam2021JamCheck")
 
         local targets = {}
         -- Select random people
@@ -139,7 +155,7 @@ function EVENT:Begin()
             end
 
             timer.Adjust("RdmtJingleJam2021JamCheck", GetInterval())
-            timer.UnPause("RdmtJingleJam2021JamCheck")
+            timer.Start("RdmtJingleJam2021JamCheck")
         end)
     end)
 end
