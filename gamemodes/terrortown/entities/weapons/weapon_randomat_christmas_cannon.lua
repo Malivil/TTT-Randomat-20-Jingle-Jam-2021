@@ -41,6 +41,10 @@ function SWEP:Initialize()
     end
 end
 
+function SWEP:OnDrop()
+    self:Remove()
+end
+
 function SWEP:PrimaryAttack()
     if not IsFirstTimePredicted() then return end
     self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
