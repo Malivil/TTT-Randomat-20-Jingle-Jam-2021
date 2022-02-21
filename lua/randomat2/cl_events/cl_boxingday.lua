@@ -9,6 +9,8 @@ surface.CreateFont("KnockedOut", {
 
 -- Translation strings
 hook.Add("Initialize", "RdmtBoxingDay_Translations_Initialize", function()
+    if GAMEMODE.FolderName ~= "terrortown" then return end
+
     LANG.AddToLanguage("english", "rdmtbox_gloves_help_pri", "Use {primaryfire} to knock weapons out of players' hands")
     LANG.AddToLanguage("english", "rdmtbox_gloves_help_sec", "Attack with {secondaryfire} to knock players out")
 end)
