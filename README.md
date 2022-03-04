@@ -14,6 +14,7 @@ _ttt_randomat_boxingday_ - Default: 1 - Whether this event is enabled.\
 _ttt_randomat_boxingday_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
 _ttt_randomat_boxingday_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.\
 _randomat_boxingday_damage_ - Default: 5 - Damage done by each punch.\
+_randomat_boxingday_chance_ - Default: 0.33 - Percent chance a punched player will get knocked out.\
 _randomat_boxingday_timer_ - Default: 3 - Time between being given gloves.\
 _randomat_boxingday_strip_ - Default: 1 - The event strips your other weapons.\
 _randomat_boxingday_knockout_duration_ - Default: 10 - Time punched player should be knocked down.

@@ -7,6 +7,7 @@ util.AddNetworkString("RdmtBoxingDayBegin")
 util.AddNetworkString("RdmtBoxingDayEnd")
 
 CreateConVar("randomat_boxingday_damage", 5, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Damage done by each punch", 1, 25)
+CreateConVar("randomat_boxingday_chance", "0.33", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Percent chance a punched player will get knocked out", 0.0, 1.0)
 CreateConVar("randomat_boxingday_timer", 3, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Time between being given gloves", 1, 30)
 CreateConVar("randomat_boxingday_strip", 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "The event strips your other weapons")
 local knockout_duration = CreateConVar("randomat_boxingday_knockout_duration", 10, FCVAR_NONE, "Time punched player should be knocked down", 1, 60)
@@ -163,7 +164,7 @@ end
 
 function EVENT:GetConVars()
     local sliders = {}
-    for _, v in ipairs({"knockout_duration", "timer", "damage"}) do
+    for _, v in ipairs({"knockout_duration", "timer", "damage", "chance"}) do
         local name = "randomat_" .. self.id .. "_" .. v
         if ConVarExists(name) then
             local convar = GetConVar(name)
@@ -172,7 +173,7 @@ function EVENT:GetConVars()
                 dsc = convar:GetHelpText(),
                 min = convar:GetMin(),
                 max = convar:GetMax(),
-                dcm = 0
+                dcm = v == "chance" and 2 or 0
             })
         end
     end

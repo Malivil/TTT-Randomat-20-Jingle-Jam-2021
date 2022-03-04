@@ -130,7 +130,9 @@ function SWEP:DoPunch(owner, onplayerhit)
 
             hitEnt:DispatchTraceAttack(dmg, spos + (owner:GetAimVector() * 3), sdest)
 
-            if onplayerhit then
+            -- Only call the callback if this punch isn't going to kill them
+            local damage = GetConVar("randomat_boxingday_damage"):GetInt()
+            if onplayerhit and damage < hitEnt:Health() then
                 onplayerhit(hitEnt)
             end
         end
@@ -158,7 +160,17 @@ function SWEP:PrimaryAttack()
         owner:LagCompensation(true)
     end
 
-    self:DoPunch(owner)
+    self:DoPunch(owner, function(target)
+        if SERVER then
+            if not IsPlayer(target) then return end
+            if target:GetNWBool("RdmtBoxingKnockedOut", false) then return end
+
+            -- Try knocking out the player
+            if math.random() < GetConVar("randomat_boxingday_chance"):GetFloat() then
+                target:RdmtBoxingKnockout()
+            end
+        end
+    end)
 
     if owner.LagCompensation then
         owner:LagCompensation(false)
