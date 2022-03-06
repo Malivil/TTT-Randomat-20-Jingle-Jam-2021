@@ -12,6 +12,7 @@ CreateConVar("randomat_jinglejam2021_chance", 0.25, {FCVAR_NOTIFY, FCVAR_ARCHIVE
 EVENT.Title = "Jingle Jam 2021"
 EVENT.Description = "Periodically jams random players' weapons for a short time"
 EVENT.id = "jinglejam2021"
+EVENT.Categories = {"smallimpact"}
 
 local function GetInterval()
     local interval_min = GetConVar("randomat_jinglejam2021_interval_min"):GetInt()

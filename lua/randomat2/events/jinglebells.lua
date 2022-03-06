@@ -3,6 +3,7 @@ local EVENT = {}
 EVENT.Title = "Jingle Bells"
 EVENT.Description = "Jingle all the way!"
 EVENT.id = "jinglebells"
+EVENT.Categories = {"fun", "smallimpact"}
 
 local footsteps = {
     Sound("lootgoblin/jingle1.wav"),

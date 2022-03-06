@@ -15,6 +15,7 @@ local knockout_duration = CreateConVar("randomat_boxingday_knockout_duration", 1
 EVENT.Title = "Boxing Day"
 EVENT.Description = "Boxing gloves for everyone!"
 EVENT.id = "boxingday"
+EVENT.Categories = {"item", "rolechange", "largeimpact"}
 
 local knockout = Sound("knockout.mp3")
 

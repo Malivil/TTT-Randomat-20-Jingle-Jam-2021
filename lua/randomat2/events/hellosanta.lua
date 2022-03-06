@@ -10,6 +10,7 @@ CreateConVar("randomat_hellosanta_blocklist", "", {FCVAR_ARCHIVE, FCVAR_NOTIFY},
 EVENT.Title = "Hello, Santa! It's me! Santa!"
 EVENT.Description = "All players are turned into santa and given a christmas cannon"
 EVENT.id = "hellosanta"
+EVENT.Categories = {"item", "rolechange", "largeimpact"}
 
 local oldPlayerModels = {}
 
