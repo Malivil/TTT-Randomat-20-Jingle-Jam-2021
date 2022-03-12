@@ -79,6 +79,10 @@ function SWEP:PlayPunchAnimation(anim)
     self:GoIdle(anim)
 end
 
+local function IsValidTarget(hitEnt)
+    return hitEnt:IsPlayer() or hitEnt:GetClass() == "prop_ragdoll"
+end
+
 function SWEP:DoPunch(owner, onplayerhit)
     -- Don't let the owner keep punching after they've been knocked out
     if owner:GetNWBool("RdmtBoxingKnockedOut", false) then
@@ -106,7 +110,7 @@ function SWEP:DoPunch(owner, onplayerhit)
             edata:SetHitBox(tr_main.HitBox)
             edata:SetEntity(hitEnt)
 
-            if hitEnt:IsPlayer() or hitEnt:GetClass() == "prop_ragdoll" then
+            if IsValidTarget(hitEnt) then
                 util.Effect("BloodImpact", edata)
                 owner:LagCompensation(false)
             else
@@ -118,7 +122,7 @@ function SWEP:DoPunch(owner, onplayerhit)
     if not CLIENT then
         owner:SetAnimation(PLAYER_ATTACK1)
 
-        if IsPlayer(hitEnt) then
+        if IsValid(hitEnt) and IsValidTarget(hitEnt) then
             local dmg = DamageInfo()
             dmg:SetDamage(self.Primary.Damage)
             dmg:SetAttacker(owner)
