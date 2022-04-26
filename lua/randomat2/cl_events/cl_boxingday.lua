@@ -15,6 +15,14 @@ hook.Add("Initialize", "RdmtBoxingDay_Translations_Initialize", function()
     LANG.AddToLanguage("english", "rdmtbox_gloves_help_sec", "Attack with {secondaryfire} to knock players out")
 end)
 
+local function BlockTargetID(ent, cli, text, color)
+    if not IsValid(ent) then return end
+
+    if IsValid(ent:GetNWEntity("RdmtBoxingRagdolledPly", nil)) then
+        return false
+    end
+end
+
 local duration
 local client
 
@@ -106,9 +114,16 @@ net.Receive("RdmtBoxingDayBegin", function()
         CRHUD:PaintBar(8, x, y, width, height, colors, 1 - (diff / duration))
         draw.SimpleText("KNOCKED OUT", "KnockedOut", ScrW() / 2, y + 1, COLOR_WHITE, TEXT_ALIGN_CENTER)
     end)
+
+    hook.Add("TTTTargetIDRagdollName", "RdmtBoxingDayTTTTargetIDRagdollName", BlockTargetID)
+    hook.Add("TTTTargetIDEntityHintLabel", "RdmtBoxingDayTTTTargetIDEntityHintLabel", BlockTargetID)
+    hook.Add("TTTTargetIDPlayerHintText", "RdmtBoxingDayTTTTargetIDPlayerHintText", BlockTargetID)
 end)
 
 net.Receive("RdmtBoxingDayEnd", function()
     hook.Remove("TTTPlayerAliveClientThink", "RdmtBoxingDay_TTTPlayerAliveClientThink")
     hook.Remove("HUDPaint", "RdmtBoxingDay_HUDPaint")
+    hook.Remove("TTTTargetIDRagdollName", "RdmtBoxingDayTTTTargetIDRagdollName")
+    hook.Remove("TTTTargetIDEntityHintLabel", "RdmtBoxingDayTTTTargetIDEntityHintLabel")
+    hook.Remove("TTTTargetIDPlayerHintText", "RdmtBoxingDayTTTTargetIDPlayerHintText")
 end)

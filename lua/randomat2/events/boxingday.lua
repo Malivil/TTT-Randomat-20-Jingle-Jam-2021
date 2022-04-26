@@ -260,6 +260,9 @@ function plymeta:RdmtBoxingRevive()
     self:SetNWInt("RdmtBoxingKnockoutEndTime", 0)
 
     -- Unragdoll
+    -- Set these so players don't get their role weapons given back if they've already used them
+    self.Resurrecting = true
+    self.DeathRoleWeapons = nil
     self:SpectateEntity(nil)
     self:UnSpectate()
     self:SetParent()
