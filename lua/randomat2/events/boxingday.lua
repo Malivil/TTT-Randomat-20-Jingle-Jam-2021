@@ -208,13 +208,20 @@ function plymeta:RdmtBoxingKnockout()
     local ragdoll = ents.Create("prop_ragdoll")
     ragdoll:SetNWEntity("RdmtBoxingRagdolledPly", self)
     ragdoll.playerHealth = self:Health()
+    ragdoll.playerColor = self:GetPlayerColor()
     -- Don't let the red matter bomb destroy this ragdoll
     ragdoll.WYOZIBHDontEat = true
 
-    ragdoll:SetPos(self:GetPos())
     local velocity = self:GetVelocity()
-    ragdoll:SetAngles(self:GetAngles())
+    ragdoll:SetPos(self:GetPos())
     ragdoll:SetModel(self:GetModel())
+    ragdoll:SetSkin(self:GetSkin())
+    for _, value in pairs(self:GetBodyGroups()) do
+        ragdoll:SetBodygroup(value.id, self:GetBodygroup(value.id))
+    end
+    ragdoll:SetAngles(self:GetAngles())
+    ragdoll:SetColor(self:GetColor())
+    CORPSE.SetPlayerNick(ragdoll, self)
     ragdoll:Spawn()
     ragdoll:Activate()
 
@@ -262,6 +269,7 @@ function plymeta:RdmtBoxingRevive()
     local yaw = boxerRagdoll:GetAngles().yaw
     self:SetAngles(Angle(0, yaw, 0))
     self:SetModel(boxerRagdoll:GetModel())
+    self:SetPlayerColor(boxerRagdoll.playerColor)
 
     -- Let weapons be seen again
     self:DrawViewModel(true)
