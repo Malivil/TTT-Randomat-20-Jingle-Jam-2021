@@ -127,7 +127,7 @@ function EVENT:Begin()
         end
 
         for _, p in ipairs(targets) do
-            p:SetNWBool("RdmtJingleJam2021Jammed", true)
+            p.RdmtJingleJam2021Jammed = true
 
             -- Jam current weapons
             self:JamWeapons(p)
@@ -136,7 +136,7 @@ function EVENT:Begin()
         -- Jam when picking up weapon
         self:AddHook("WeaponEquip", function(weap, ply)
             if not self:IsValidWeapon(weap) or not IsPlayer(ply) or not ply:Alive() or ply:IsSpec() then return end
-            if not ply:GetNWBool("RdmtJingleJam2021Jammed", false) then return false end
+            if not ply.RdmtJingleJam2021Jammed then return false end
 
             self:JamWeapon(ply, weap)
         end)
@@ -144,7 +144,7 @@ function EVENT:Begin()
         -- Un-jam when dropping weapon
         self:AddHook("PlayerDroppedWeapon", function(ply, weap)
             if not self:IsValidWeapon(weap) or not IsPlayer(ply) or not ply:Alive() or ply:IsSpec() then return end
-            if not ply:GetNWBool("RdmtJingleJam2021Jammed", false) then return false end
+            if not ply.RdmtJingleJam2021Jammed then return false end
 
             self:UnjamWeapon(ply, weap)
         end)
@@ -152,7 +152,7 @@ function EVENT:Begin()
         timer.Create("RdmtJingleJam2021JamDuration", duration, 1, function()
             for _, p in ipairs(targets) do
                 self:UnjamWeapons(p)
-                p:SetNWBool("RdmtJingleJam2021Jammed", false)
+                p.RdmtJingleJam2021Jammed = false
             end
 
             timer.Adjust("RdmtJingleJam2021JamCheck", GetInterval())
@@ -167,6 +167,7 @@ function EVENT:End()
     for _, k in ipairs(timers) do
         timer.Remove(k)
     end
+    table.Empty(timers)
 
     net.Start("RdmtJingleJam2021End")
     net.Broadcast()
