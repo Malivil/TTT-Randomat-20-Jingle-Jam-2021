@@ -7,7 +7,9 @@
     "*.md",
     "*.iml",
     ".idea*",
+    ".luacheckrc",
     "*.psd",
+    "*.rockspec",
     "*.vcproj",
     "*.svn*",
     "LICENSE"
