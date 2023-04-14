@@ -286,6 +286,5 @@ function plymeta:RdmtBoxingRevive()
     SetRoleMaxHealth(self)
 
     SafeRemoveEntity(boxerRagdoll)
-    boxerRagdoll = nil
     self:SetNWEntity("RdmtBoxingRagdoll", nil)
 end

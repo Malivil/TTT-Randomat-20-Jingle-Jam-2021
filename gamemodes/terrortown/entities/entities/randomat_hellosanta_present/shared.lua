@@ -67,7 +67,7 @@ if CLIENT then
         elseif not can_carry then
             client:PrintMessage(HUD_PRINTTALK, "You are already holding an item that shares a slot with '" .. name .. "'!")
         else
-            client:PrintMessage(HUD_PRINTTALK, "You got '" .. name .. "' from " .. ROLE_STRINGS[ROLE_SANTA] .. "!")
+            client:PrintMessage(HUD_PRINTTALK, "You got '" .. name .. "' from Santa!")
         end
     end)
 end
