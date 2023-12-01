@@ -53,7 +53,7 @@ _ttt_randomat_jinglejam2021_ - Default: 1 - Whether this event is enabled.\
 _ttt_randomat_jinglejam2021_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
 _ttt_randomat_jinglejam2021_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.
 
-## Special Thanks
+# Special Thanks
 - [Benboncan](https://freesound.org/people/Benboncan/sounds/66951/) on FreeSound.org for "Boxing Day"'s knockout sound
 - [Fyxen](https://steamcommunity.com/profiles/76561198810121546/) for the model, texture, animations, and sound modification for the boxing gloves and for the model and texture modifications for the christmas cannon
 - Kathar for the model and texture for the christmas present
