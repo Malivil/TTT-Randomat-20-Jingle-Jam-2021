@@ -20,7 +20,7 @@ _randomat_boxingday_strip_ - Default: 1 - The event strips your other weapons.\
 _randomat_boxingday_knockout_duration_ - Default: 10 - Time punched player should be knocked down.
 
 ## Hello, Santa! It's me! Santa!
-_Suggested By_: Noxx\
+_Contributed By_: Noxx\
 All players are turned into santa and given a christmas cannon
 \
 \
