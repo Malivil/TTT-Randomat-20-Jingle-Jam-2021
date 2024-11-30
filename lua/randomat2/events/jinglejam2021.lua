@@ -2,7 +2,6 @@ local EVENT = {}
 
 util.AddNetworkString("RdmtJingleJam2021Start")
 util.AddNetworkString("RdmtJingleJam2021Stop")
-util.AddNetworkString("RdmtJingleJam2021End")
 
 CreateConVar("randomat_jinglejam2021_interval_min", 30, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Minimum seconds between jams", 1, 60)
 CreateConVar("randomat_jinglejam2021_interval_max", 60, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Maximum seconds between jams", 2, 120)
@@ -166,9 +165,6 @@ function EVENT:End()
         timer.Remove(k)
     end
     table.Empty(timers)
-
-    net.Start("RdmtJingleJam2021End")
-    net.Broadcast()
 end
 
 function EVENT:GetConVars()

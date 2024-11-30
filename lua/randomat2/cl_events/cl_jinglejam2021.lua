@@ -1,4 +1,30 @@
-local client
+local EVENT = {}
+EVENT.id = "jinglejam2021"
+
+local client = nil
+local function UnjamWeapon(weap)
+    if weap.OldPrimaryAttack then
+        weap.PrimaryAttack = weap.OldPrimaryAttack
+        weap.OldPrimaryAttack = nil
+    end
+end
+
+function EVENT:End()
+    if not IsPlayer(client) then
+        client = LocalPlayer()
+    end
+
+    -- If we still don't have a client it's because we're not loaded yet
+    -- This can happen because the Randomat "ends" all events during the Prep phase so if
+    -- a player is still loading at that point then `LocalPlayer` would return a NULL Entity
+    if not client or not IsPlayer(client) or not client.GetWeapons then return end
+
+    for _, w in ipairs(client:GetWeapons()) do
+        UnjamWeapon(w)
+    end
+end
+
+Randomat:register(EVENT)
 
 local function JamWeapon(weap)
     if not weap.OldPrimaryAttack then
@@ -25,13 +51,6 @@ local function JamWeapon(weap)
     end
 end
 
-local function UnjamWeapon(weap)
-    if weap.OldPrimaryAttack then
-        weap.PrimaryAttack = weap.OldPrimaryAttack
-        weap.OldPrimaryAttack = nil
-    end
-end
-
 net.Receive("RdmtJingleJam2021Start", function()
     if not IsPlayer(client) then
         client = LocalPlayer()
@@ -52,19 +71,4 @@ net.Receive("RdmtJingleJam2021Stop", function()
     local weap = client:GetWeapon(weap_class)
     if not IsValid(weap) then return end
     UnjamWeapon(weap)
-end)
-
-net.Receive("RdmtJingleJam2021End", function()
-    if not IsPlayer(client) then
-        client = LocalPlayer()
-    end
-
-    -- If we still don't have a client it's because we're not loaded yet
-    -- This can happen because the Randomat "ends" all events during the Prep phase so if
-    -- a player is still loading at that point then `LocalPlayer` would return a NULL Entity
-    if not client or not IsPlayer(client) or not client.GetWeapons then return end
-
-    for _, w in ipairs(client:GetWeapons()) do
-        UnjamWeapon(w)
-    end
 end)

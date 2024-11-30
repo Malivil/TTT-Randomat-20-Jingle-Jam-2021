@@ -7,6 +7,19 @@ surface.CreateFont("KnockedOut", {
     weight = 600
 })
 
+local EVENT = {}
+EVENT.id = "boxingday"
+
+function EVENT:End()
+    hook.Remove("TTTPlayerAliveClientThink", "RdmtBoxingDay_TTTPlayerAliveClientThink")
+    hook.Remove("HUDPaint", "RdmtBoxingDay_HUDPaint")
+    hook.Remove("TTTTargetIDRagdollName", "RdmtBoxingDayTTTTargetIDRagdollName")
+    hook.Remove("TTTTargetIDEntityHintLabel", "RdmtBoxingDayTTTTargetIDEntityHintLabel")
+    hook.Remove("TTTTargetIDPlayerHintText", "RdmtBoxingDayTTTTargetIDPlayerHintText")
+end
+
+Randomat:register(EVENT)
+
 -- Translation strings
 hook.Add("Initialize", "RdmtBoxingDay_Translations_Initialize", function()
     if GAMEMODE.FolderName ~= "terrortown" then return end
@@ -118,12 +131,4 @@ net.Receive("RdmtBoxingDayBegin", function()
     hook.Add("TTTTargetIDRagdollName", "RdmtBoxingDayTTTTargetIDRagdollName", BlockTargetID)
     hook.Add("TTTTargetIDEntityHintLabel", "RdmtBoxingDayTTTTargetIDEntityHintLabel", BlockTargetID)
     hook.Add("TTTTargetIDPlayerHintText", "RdmtBoxingDayTTTTargetIDPlayerHintText", BlockTargetID)
-end)
-
-net.Receive("RdmtBoxingDayEnd", function()
-    hook.Remove("TTTPlayerAliveClientThink", "RdmtBoxingDay_TTTPlayerAliveClientThink")
-    hook.Remove("HUDPaint", "RdmtBoxingDay_HUDPaint")
-    hook.Remove("TTTTargetIDRagdollName", "RdmtBoxingDayTTTTargetIDRagdollName")
-    hook.Remove("TTTTargetIDEntityHintLabel", "RdmtBoxingDayTTTTargetIDEntityHintLabel")
-    hook.Remove("TTTTargetIDPlayerHintText", "RdmtBoxingDayTTTTargetIDPlayerHintText")
 end)
