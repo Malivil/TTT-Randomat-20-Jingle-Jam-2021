@@ -16,8 +16,10 @@ local oldPlayerModels = {}
 
 function EVENT:HandleRoleWeapons(ply)
     -- Convert all bad guys to traitors so we don't have to worry about fighting with special weapon replacement logic
-    if (Randomat:IsTraitorTeam(ply) and ply:GetRole() ~= ROLE_TRAITOR) or Randomat:IsMonsterTeam(ply) or Randomat:IsIndependentTeam(ply) then
-        Randomat:SetRole(ply, ROLE_TRAITOR)
+    if Randomat:IsTraitorTeam(ply) or Randomat:IsMonsterTeam(ply) or Randomat:IsIndependentTeam(ply) then
+        if ply:GetRole() ~= ROLE_TRAITOR then
+            Randomat:SetRole(ply, ROLE_TRAITOR)
+        end
         self:StripRoleWeapons(ply)
     -- If santa or other special detectives are in the round we make them a normal detective
     elseif Randomat:IsDetectiveLike(ply) then
