@@ -148,7 +148,7 @@ function EVENT:Begin()
 end
 
 function EVENT:End()
-    for _, v in pairs(player.GetAll()) do
+    for _, v in player.Iterator() do
         if v:GetNWBool("RdmtBoxingKnockedOut", false) then
             v:RdmtBoxingRevive()
         end

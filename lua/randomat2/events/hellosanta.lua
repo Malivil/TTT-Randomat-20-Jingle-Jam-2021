@@ -45,7 +45,7 @@ function EVENT:Begin()
 end
 
 function EVENT:End()
-    for _, v in ipairs(player.GetAll()) do
+    for _, v in player.Iterator() do
         if oldPlayerModels[v:SteamID64()] then
             SetMDL(v, oldPlayerModels[v:SteamID64()])
         end
