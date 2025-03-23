@@ -3,10 +3,10 @@ local EVENT = {}
 util.AddNetworkString("RdmtJingleJam2021Start")
 util.AddNetworkString("RdmtJingleJam2021Stop")
 
-CreateConVar("randomat_jinglejam2021_interval_min", 30, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Minimum seconds between jams", 1, 60)
-CreateConVar("randomat_jinglejam2021_interval_max", 60, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Maximum seconds between jams", 2, 120)
-CreateConVar("randomat_jinglejam2021_duration", 5, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Weapon jam duration", 1, 30)
-CreateConVar("randomat_jinglejam2021_chance", 0.25, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Weapon jam chance", 0.1, 1)
+CreateConVar("randomat_jinglejam2021_interval_min", 30, FCVAR_NONE, "Minimum seconds between jams", 1, 60)
+CreateConVar("randomat_jinglejam2021_interval_max", 60, FCVAR_NONE, "Maximum seconds between jams", 2, 120)
+CreateConVar("randomat_jinglejam2021_duration", 5, FCVAR_NONE, "Weapon jam duration", 1, 30)
+CreateConVar("randomat_jinglejam2021_chance", 0.25, FCVAR_NONE, "Weapon jam chance", 0.1, 1)
 
 EVENT.Title = "Jingle Jam 2021"
 EVENT.Description = "Periodically jams random players' weapons for a short time"

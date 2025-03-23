@@ -5,10 +5,10 @@ local EVENT = {}
 
 util.AddNetworkString("RdmtBoxingDayBegin")
 
-CreateConVar("randomat_boxingday_damage", 5, FCVAR_ARCHIVE, "Damage done by each punch", 1, 25)
-CreateConVar("randomat_boxingday_chance", "0.33", FCVAR_ARCHIVE, "Percent chance a punched player will get knocked out", 0.0, 1.0)
-CreateConVar("randomat_boxingday_timer", 3, FCVAR_ARCHIVE, "Time between being given gloves", 1, 30)
-CreateConVar("randomat_boxingday_strip", 1, FCVAR_ARCHIVE, "The event strips your other weapons")
+CreateConVar("randomat_boxingday_damage", 5, FCVAR_NONE, "Damage done by each punch", 1, 25)
+CreateConVar("randomat_boxingday_chance", "0.33", FCVAR_NONE, "Percent chance a punched player will get knocked out", 0.0, 1.0)
+CreateConVar("randomat_boxingday_timer", 3, FCVAR_NONE, "Time between being given gloves", 1, 30)
+CreateConVar("randomat_boxingday_strip", 1, FCVAR_NONE, "The event strips your other weapons")
 local knockout_duration = CreateConVar("randomat_boxingday_knockout_duration", 10, FCVAR_NONE, "Time punched player should be knocked down", 1, 60)
 
 EVENT.Title = "Boxing Day"
