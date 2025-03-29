@@ -11,6 +11,7 @@ EVENT.Title = "Hello, Santa! It's me! Santa!"
 EVENT.Description = "All players are turned into santa and given a christmas cannon"
 EVENT.id = "hellosanta"
 EVENT.Categories = {"item", "modelchange", "rolechange", "largeimpact"}
+EVENT.ConVars = {"randomat_hellosanta_blocklist"}
 
 local oldPlayerModels = {}
 
