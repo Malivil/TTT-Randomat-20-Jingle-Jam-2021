@@ -43,7 +43,7 @@ _ttt_randomat_jinglebells_min_players_ - Default: 0 - The minimum number of play
 _ttt_randomat_jinglebells_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.
 
 ## Jingle Jam 2021
-_Suggested By_: Malivil\
+_Contributed By_: Malivil\
 Throughout the round, players have a random chance to have all of their weapons jam for a short time
 \
 \
