@@ -37,12 +37,8 @@ local function BlockTargetID(ent, cli, text, color)
 end
 
 local duration
-local client
 
 net.Receive("RdmtBoxingDayBegin", function()
-    if not client then
-        client = LocalPlayer()
-    end
     duration = net.ReadInt(8)
 
     -- Dizzy effect
@@ -66,9 +62,6 @@ net.Receive("RdmtBoxingDayBegin", function()
     end
 
     hook.Add("TTTPlayerAliveClientThink", "RdmtBoxingDay_TTTPlayerAliveClientThink", function(cli, ply)
-        if not client then
-            client = cli
-        end
         local ragdoll = ply:GetNWEntity("RdmtBoxingRagdoll", nil)
         if not IsValid(ragdoll) then return end
 
@@ -78,7 +71,7 @@ net.Receive("RdmtBoxingDayBegin", function()
             if not ragdoll.KnockoutDir then ragdoll.KnockoutDir = 0 end
             local pos = ragdoll:GetPos()
             if ragdoll.KnockoutNextPart < CurTime() then
-                if client:GetPos():Distance(pos) <= 3000 then
+                if cli:GetPos():Distance(pos) <= 3000 then
                     ragdoll.KnockoutEmitter:SetPos(pos)
                     ragdoll.KnockoutNextPart = CurTime() + 0.02
                     ragdoll.KnockoutDir = ragdoll.KnockoutDir + 0.25
@@ -112,13 +105,9 @@ net.Receive("RdmtBoxingDayBegin", function()
         fill = Color(75, 150, 255, 255)
     }
     hook.Add("HUDPaint", "RdmtBoxingDay_HUDPaint", function()
-        if not client then
-            client = LocalPlayer()
-        end
+        if not Randomat.Client:GetNWBool("RdmtBoxingKnockedOut", false) then return end
 
-        if not client:GetNWBool("RdmtBoxingKnockedOut", false) then return end
-
-        local endTime = client:GetNWInt("RdmtBoxingKnockoutEndTime", 0)
+        local endTime = Randomat.Client:GetNWInt("RdmtBoxingKnockoutEndTime", 0)
         if endTime <= 0 then return end
 
         local diff = endTime - CurTime()
