@@ -21,15 +21,12 @@ function EVENT:HandleRoleWeapons(ply)
         if ply:GetRole() ~= ROLE_TRAITOR then
             Randomat:SetRole(ply, ROLE_TRAITOR)
         end
-        self:StripRoleWeapons(ply)
     -- If santa or other special detectives are in the round we make them a normal detective
     elseif Randomat:IsDetectiveLike(ply) then
         Randomat:SetRole(ply, ROLE_DETECTIVE)
-        self:StripRoleWeapons(ply)
     -- Everyone else becomes innocent
     elseif ply:GetRole() ~= ROLE_INNOCENT then
         Randomat:SetRole(ply, ROLE_INNOCENT)
-        self:StripRoleWeapons(ply)
     end
 end
 
