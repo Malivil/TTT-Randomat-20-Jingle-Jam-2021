@@ -72,18 +72,15 @@ end
 function EVENT:Begin()
     local duration = knockout_duration:GetInt()
     net.Start("RdmtBoxingDayBegin")
-    net.WriteInt(duration, 8)
+        net.WriteInt(duration, 8)
     net.Broadcast()
 
-    for _, v in ipairs(self:GetAlivePlayers()) do
-        self:HandleRoleWeapons(v)
-    end
-    SendFullStateUpdate()
+    local _, _, new_traitors = Randomat:BalanceTeams()
+    self:NotifyTeamChange(new_traitors, ROLE_TEAM_TRAITOR)
 
     local strip = GetConVar("randomat_boxingday_strip"):GetBool()
     local weaponid = "weapon_randomat_boxgloves"
     timer.Create("RandomatBoxingGlovesTimer", GetConVar("randomat_boxingday_timer"):GetInt(), 0, function()
-        local updated = false
         for _, ply in ipairs(self:GetAlivePlayers()) do
             if strip then
                 for _, wep in ipairs(ply:GetWeapons()) do
@@ -100,14 +97,6 @@ function EVENT:Begin()
             if not ply:HasWeapon(weaponid) then
                 ply:Give(weaponid)
             end
-
-            -- Workaround the case where people can respawn as Zombies while this is running
-            updated = updated or self:HandleRoleWeapons(ply)
-        end
-
-        -- If anyone's role changed, send the update
-        if updated then
-            SendFullStateUpdate()
         end
     end)
 
